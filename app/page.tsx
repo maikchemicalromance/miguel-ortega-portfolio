@@ -67,7 +67,7 @@ export default function MiguelOrtegaPortfolio() {
       type: "Cortometraje",
       url: "https://www.youtube.com/watch?v=SfCJq2izfrQ",
       thumbnail:
-        "https://img.youtube.com/vi/SfCJq2izfrQ/maxresdefault.jpg",
+        "https://i.imgur.com/crQaxOm.jpg",
     },
   ];
 
@@ -188,7 +188,7 @@ export default function MiguelOrtegaPortfolio() {
           {/* GIF */}
           <div className="relative mx-auto mb-10 max-w-3xl overflow-hidden">
             <img
-              src="https://i.imgur.com/pJYOQdp.gif"
+              src="https://i.imgur.com/4LYejFa.gifv"
               alt=""
               className="w-full max-h-[420px] object-cover opacity-90"
             />
