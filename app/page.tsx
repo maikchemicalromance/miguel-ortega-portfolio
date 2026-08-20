@@ -190,57 +190,59 @@ export default function MiguelOrtegaPortfolio() {
           HERO
       ========================= */}
 
-      <section
-        id="top"
-        className="pt-28 md:pt-32 pb-20 px-5 md:px-6"
-      >
-        <div className="max-w-5xl mx-auto text-center">
+      {/* =========================
+    HERO
+========================= */}
 
-          {/* HERO VIDEO */}
+<section id="top" className="pt-20 md:pt-24 pb-20">
 
-          <div className="relative mx-auto mb-10 max-w-3xl overflow-hidden">
+  {/* HERO VIDEO */}
 
-            <video
-              className="w-full max-h-[420px] object-cover opacity-90"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              poster="/hero-poster.jpg"
-              aria-label="Hero"
-            >
-              <source src="/hero.mp4" type="video/mp4" />
-            </video>
+  <div className="relative w-full h-[55vh] min-h-[420px] md:h-[70vh] md:min-h-[600px] overflow-hidden">
 
-            {/* Gradient superior */}
+    <video
+      className="absolute inset-0 w-full h-full object-cover opacity-90"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      aria-label="Hero"
+    >
+      <source src="/hero.mp4" type="video/mp4" />
+    </video>
 
-            <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-transparent to-neutral-950 pointer-events-none" />
+    {/* Gradient superior */}
 
-            {/* Gradient lateral */}
+    <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/90 via-transparent to-neutral-950 pointer-events-none" />
 
-            <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/70 via-transparent to-neutral-950/70 pointer-events-none" />
+    {/* Gradient lateral */}
 
-          </div>
+    <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/50 via-transparent to-neutral-950/50 pointer-events-none" />
+
+  </div>
 
 
-          {/* Name */}
+  {/* Name */}
 
-          <h1
-            className="text-6xl sm:text-7xl md:text-8xl font-black tracking-tight text-neutral-50"
-            style={{ letterSpacing: "-0.04em" }}
-          >
-            MIGUEL
-            <br />
-            ORTEGA
-          </h1>
+  <div className="max-w-5xl mx-auto text-center px-5 md:px-6">
 
-          <p className="text-base sm:text-xl md:text-2xl text-neutral-400 mt-5 font-light tracking-wide">
-            FILMMAKER · CREADOR · CRÍTICO
-          </p>
+    <h1
+      className="text-6xl sm:text-7xl md:text-8xl font-black tracking-tight text-neutral-50 mt-[-20px] md:mt-[-30px] relative z-10"
+      style={{ letterSpacing: "-0.04em" }}
+    >
+      MIGUEL
+      <br />
+      ORTEGA
+    </h1>
 
-        </div>
-      </section>
+    <p className="text-base sm:text-xl md:text-2xl text-neutral-400 mt-5 font-light tracking-wide">
+      FILMMAKER · CREADOR · CRÍTICO
+    </p>
+
+  </div>
+
+</section>
 
 
       {filmStrip}
