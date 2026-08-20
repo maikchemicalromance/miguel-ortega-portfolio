@@ -1,4 +1,10 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
+import { ArrowUpRight, Play, Music, Mail } from 'lucide-react';
+
+export default function MiguelOrtegaPortfolio() {
+  import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Play, Music, Mail } from 'lucide-react';
 
 export default function MiguelOrtegaPortfolio() {
