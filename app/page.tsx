@@ -84,7 +84,7 @@ export default function MiguelOrtegaPortfolio() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-neutral-800 backdrop-blur-sm bg-neutral-950/80">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-xs font-mono tracking-widest text-neutral-400">MAIK</div>
+          <div className="text-xs font-mono tracking-widest text-neutral-400">MIGUEL ORTEGA</div>
           <div className="flex gap-8 text-sm">
             <a href="#filmmaker" className="hover:text-neutral-300 transition">FILMMAKER</a>
             <a href="#creador" className="hover:text-neutral-300 transition">CREADOR</a>
@@ -99,23 +99,26 @@ export default function MiguelOrtegaPortfolio() {
       <section className="pt-32 pb-20 px-6 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-7xl md:text-8xl font-black tracking-tight mb-4 text-neutral-50" style={{letterSpacing: '-0.02em'}}>
-            MAIK
+            MIGUEL
+            <br />
+            ORTEGA
           </h1>
-          <p className="text-xl md:text-2xl text-neutral-400 mb-8 font-light tracking-wide">
+          <p className="text-xl md:text-2xl text-neutral-400 mb-12 font-light tracking-wide">
             FILMMAKER · CREADOR · CRÍTICO
           </p>
-          <p className="text-neutral-500 max-w-2xl mx-auto mb-12 text-lg leading-relaxed">
-            Creador, filmmaker y crítico explorando cine, música y cultura contemporánea.
-          </p>
 
-          {/* Hero Visual */}
+          {/* Demo Reel Video */}
           <div className="relative w-full aspect-video bg-neutral-900 rounded-lg overflow-hidden border border-neutral-800 mb-12">
-            <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 to-transparent flex items-center justify-center">
-              <div className="text-center">
-                <Play className="w-16 h-16 mx-auto text-neutral-400 mb-4 opacity-50" />
-                <p className="text-neutral-500 text-sm">Showreel o Proyecto Destacado</p>
-              </div>
-            </div>
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/j-_Ym5k2UuA?autoplay=1&mute=1&loop=1&playlist=j-_Ym5k2UuA"
+              title="Demo Reel"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0"
+            />
           </div>
 
           <div className="flex justify-center gap-6">
@@ -208,48 +211,47 @@ export default function MiguelOrtegaPortfolio() {
       {/* Reviews */}
       <section id="reviews" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-black mb-4 text-neutral-50" style={{letterSpacing: '-0.02em'}}>
+          <h2 className="text-5xl md:text-6xl font-black mb-12 text-neutral-50" style={{letterSpacing: '-0.02em'}}>
             REVIEWS
           </h2>
-          <p className="text-neutral-500 text-lg mb-12">Crítica de Cine y Música</p>
 
-          {/* Letterboxd Embed */}
-          <div className="mb-20 pb-20 border-b border-neutral-800">
-            <div className="mb-6">
-              <h3 className="text-2xl font-semibold mb-4">Mis Reseñas en Letterboxd</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* Letterboxd */}
+            <div>
+              <h3 className="text-2xl font-semibold mb-6">Cine</h3>
               <div 
                 id="letterboxd-embed-wrapper-tc" 
                 className="min-h-96 bg-neutral-900 rounded-lg p-6 border border-neutral-800"
               >
                 <p className="text-neutral-500">Cargando reseñas de Letterboxd...</p>
               </div>
-            </div>
-            <a 
-              href="https://letterboxd.com/maikk/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-neutral-700 hover:border-neutral-400 transition"
-            >
-              VER MÁS EN LETTERBOXD <ArrowUpRight className="w-4 h-4" />
-            </a>
-          </div>
-
-          {/* Musicboard Section */}
-          <div className="py-12 text-center">
-            <div className="mb-8">
-              <Music className="w-16 h-16 mx-auto text-neutral-400 mb-6" />
-              <h3 className="text-3xl font-semibold mb-4">Reseñas de Música</h3>
-              <p className="text-neutral-400 mb-8 max-w-xl mx-auto">
-                Crítica y análisis de álbumes en Musicboard
-              </p>
               <a 
-                href="https://musicboard.app/maikchemicalromance"
+                href="https://letterboxd.com/maikk/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-neutral-50 text-neutral-950 font-semibold hover:bg-neutral-200 transition"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-neutral-700 hover:border-neutral-400 transition mt-6"
               >
-                IR A MUSICBOARD <ArrowUpRight className="w-4 h-4" />
+                VER MÁS EN LETTERBOXD <ArrowUpRight className="w-4 h-4" />
               </a>
+            </div>
+
+            {/* Musicboard */}
+            <div className="flex flex-col justify-center">
+              <div className="text-center">
+                <Music className="w-20 h-20 mx-auto text-neutral-400 mb-8" />
+                <h3 className="text-3xl font-semibold mb-6">Música</h3>
+                <p className="text-neutral-400 mb-10 text-lg leading-relaxed">
+                  Crítica y análisis profundo de álbumes. Explora mis reseñas de música en Musicboard.
+                </p>
+                <a 
+                  href="https://musicboard.app/maikchemicalromance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-neutral-50 text-neutral-950 font-semibold hover:bg-neutral-200 transition"
+                >
+                  IR A MUSICBOARD <ArrowUpRight className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
