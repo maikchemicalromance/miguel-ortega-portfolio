@@ -4,10 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Play, Music, Mail } from 'lucide-react';
 
 export default function MiguelOrtegaPortfolio() {
-  import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, Play, Music, Mail } from 'lucide-react';
-
-export default function MiguelOrtegaPortfolio() {
   const [scrollY, setScrollY] = useState(0);
   const [letterboxdLoaded, setLetterboxdLoaded] = useState(false);
 
@@ -117,7 +113,7 @@ export default function MiguelOrtegaPortfolio() {
             <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 to-transparent flex items-center justify-center">
               <div className="text-center">
                 <Play className="w-16 h-16 mx-auto text-neutral-400 mb-4 opacity-50" />
-                <p className="text-neutral-500 text-sm">Showreel or Featured Project</p>
+                <p className="text-neutral-500 text-sm">Showreel o Proyecto Destacado</p>
               </div>
             </div>
           </div>
