@@ -1,14 +1,30 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, Play } from 'lucide-react';
+import { ArrowUpRight, Play, Music, Mail } from 'lucide-react';
 
 export default function MiguelOrtegaPortfolio() {
   const [scrollY, setScrollY] = useState(0);
+  const [letterboxdLoaded, setLetterboxdLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
+
+    // Cargar embed de Letterboxd
+    const loadLetterboxd = () => {
+      fetch('https://lb-embed-content.bokonon.dev?username=maikk')
+        .then(response => response.text())
+        .then(data => {
+          const wrapper = document.getElementById('letterboxd-embed-wrapper-tc');
+          if (wrapper) {
+            wrapper.innerHTML = data;
+            setLetterboxdLoaded(true);
+          }
+        })
+        .catch(err => console.log('Letterboxd embed error:', err));
+    };
+
+    setTimeout(loadLetterboxd, 500);
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -16,91 +32,49 @@ export default function MiguelOrtegaPortfolio() {
     <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-300 to-transparent my-16" />
   );
 
-  const projects = [
+  // DATOS - fácil de actualizar
+  const films = [
     {
       id: 1,
       title: 'DETENERSE A MIRAR',
       year: '2026',
-      type: 'Documentary',
-      description: 'A visual exploration of artistic obsession.',
-      thumbnail: 'https://images.unsplash.com/photo-1485579149c0-123123123123?w=800&q=80',
-      featured: true,
+      type: 'Documental',
+      url: 'https://www.youtube.com/watch?v=j-_Ym5k2UuA',
+      thumbnail: 'https://img.youtube.com/vi/j-_Ym5k2UuA/maxresdefault.jpg',
     },
     {
       id: 2,
+      title: 'CORPUS YO',
+      year: '2024',
+      type: 'Cortometraje',
+      url: 'https://www.instagram.com/p/C7c_1j6JJHe/',
+      thumbnail: 'https://images.unsplash.com/photo-1493514789560-586cb221d7f7?w=400&h=400&q=80',
+    },
+    {
+      id: 3,
+      title: 'SUEÑO CON VOLVER',
+      year: '2021',
+      type: 'Cortometraje',
+      url: '#',
+      thumbnail: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400&h=400&q=80',
+    },
+    {
+      id: 4,
       title: 'ESE SOY YO',
       year: '2021',
-      type: 'Short Film',
-      description: '2nd place, Cinema Culturas - Riverside, CA',
-      thumbnail: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&q=80',
-      featured: false,
-    },
-    {
-      id: 3,
-      title: 'UNTITLED PROJECT',
-      year: '2026',
-      type: 'Short Film',
-      description: 'Coming soon.',
-      thumbnail: 'https://images.unsplash.com/photo-1493514789560-586cb221d7f7?w=800&q=80',
-      featured: false,
+      type: 'Cortometraje',
+      url: 'https://www.youtube.com/watch?v=SfCJq2izfrQ',
+      thumbnail: 'https://img.youtube.com/vi/SfCJq2izfrQ/maxresdefault.jpg',
     },
   ];
 
-  const reviews = [
-    {
-      id: 1,
-      title: 'THE MANDALORIAN & GROGU',
-      artist: 'Jon Favreau',
-      type: 'TV/Film',
-      rating: 5,
-      excerpt: 'A masterclass in character-driven storytelling within a vast universe.',
-      year: '2024',
-      featured: true,
-    },
-    {
-      id: 2,
-      title: 'PINK FLOYD: THE WALL',
-      artist: 'Pink Floyd',
-      type: 'Music',
-      rating: 5,
-      excerpt: 'A concept album that redefined what rock music could be.',
-      year: '2024',
-      featured: false,
-    },
-    {
-      id: 3,
-      title: 'DUNE: PART TWO',
-      artist: 'Denis Villeneuve',
-      type: 'Film',
-      rating: 4,
-      excerpt: 'Visual poetry meets epic scale.',
-      year: '2024',
-      featured: false,
-    },
-  ];
-
-  const videos = [
-    {
-      id: 1,
-      title: 'AI-Generated Music: The Future of Art?',
-      platform: 'YouTube',
-      date: '2024-08-15',
-      thumbnail: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&q=80',
-    },
-    {
-      id: 2,
-      title: 'Toy Story 5: Why This Matters',
-      platform: 'TikTok',
-      date: '2024-08-12',
-      thumbnail: 'https://images.unsplash.com/photo-1533148935980-86512ce4caea?w=400&q=80',
-    },
-    {
-      id: 3,
-      title: 'The Art of Short-Form Criticism',
-      platform: 'Instagram',
-      date: '2024-08-10',
-      thumbnail: 'https://images.unsplash.com/photo-1594909122845-11bced451b4e?w=400&q=80',
-    },
+  const socials = [
+    { name: 'Instagram', url: 'https://www.instagram.com/maikposting', icon: '📷' },
+    { name: 'TikTok', url: 'https://www.tiktok.com/@maikposting', icon: '🎵' },
+    { name: 'YouTube', url: 'https://www.youtube.com/@maikeldelosvideos', icon: '▶️' },
+    { name: 'Facebook', url: 'https://www.facebook.com/maikposting', icon: '👥' },
+    { name: 'Letterboxd', url: 'https://letterboxd.com/maikk/', icon: '🎬' },
+    { name: 'Substack', url: 'https://substack.com/@maikposting', icon: '📝' },
   ];
 
   return (
@@ -108,16 +82,13 @@ export default function MiguelOrtegaPortfolio() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-neutral-800 backdrop-blur-sm bg-neutral-950/80">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-xs font-mono tracking-widest text-neutral-400">MIGUEL ORTEGA</div>
+          <div className="text-xs font-mono tracking-widest text-neutral-400">MAIK</div>
           <div className="flex gap-8 text-sm">
-            <a href="#work" className="hover:text-neutral-300 transition">WORK</a>
-            <a href="#videos" className="hover:text-neutral-300 transition">VIDEOS</a>
+            <a href="#filmmaker" className="hover:text-neutral-300 transition">FILMMAKER</a>
+            <a href="#creador" className="hover:text-neutral-300 transition">CREADOR</a>
             <a href="#reviews" className="hover:text-neutral-300 transition">REVIEWS</a>
-            <a href="#about" className="hover:text-neutral-300 transition">ABOUT</a>
-          </div>
-          <div className="flex gap-4 text-xs">
-            <a href="https://instagram.com/maikposting" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 transition">INSTAGRAM</a>
-            <a href="https://tiktok.com/@maikposting" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 transition">TIKTOK</a>
+            <a href="#about" className="hover:text-neutral-300 transition">SOBRE MI</a>
+            <a href="#contact" className="hover:text-neutral-300 transition">CONTACTO</a>
           </div>
         </div>
       </nav>
@@ -126,15 +97,13 @@ export default function MiguelOrtegaPortfolio() {
       <section className="pt-32 pb-20 px-6 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-7xl md:text-8xl font-black tracking-tight mb-4 text-neutral-50" style={{letterSpacing: '-0.02em'}}>
-            MIGUEL
-            <br />
-            ORTEGA
+            MAIK
           </h1>
           <p className="text-xl md:text-2xl text-neutral-400 mb-8 font-light tracking-wide">
-            FILMMAKER · CREATOR · CRITIC
+            FILMMAKER · CREADOR · CRÍTICO
           </p>
           <p className="text-neutral-500 max-w-2xl mx-auto mb-12 text-lg leading-relaxed">
-            Filmmaker, content creator and critic exploring cinema, music and contemporary culture.
+            Creador, filmmaker y crítico explorando cine, música y cultura contemporánea.
           </p>
 
           {/* Hero Visual */}
@@ -148,92 +117,85 @@ export default function MiguelOrtegaPortfolio() {
           </div>
 
           <div className="flex justify-center gap-6">
-            <button className="px-8 py-3 bg-neutral-50 text-neutral-950 font-semibold hover:bg-neutral-200 transition">
-              EXPLORE WORK
-            </button>
-            <button className="px-8 py-3 border border-neutral-700 hover:border-neutral-500 transition">
-              LATEST VIDEOS
-            </button>
+            <a href="#filmmaker" className="px-8 py-3 bg-neutral-50 text-neutral-950 font-semibold hover:bg-neutral-200 transition">
+              MIS PELÍCULAS
+            </a>
+            <a href="#creador" className="px-8 py-3 border border-neutral-700 hover:border-neutral-500 transition">
+              SÍGUEME
+            </a>
           </div>
         </div>
       </section>
 
       {filmStrip}
 
-      {/* Selected Work */}
-      <section id="work" className="py-24 px-6">
+      {/* Filmmaker - Scroll Horizontal */}
+      <section id="filmmaker" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-black mb-16 text-neutral-50" style={{letterSpacing: '-0.02em'}}>
-            SELECTED WORK
+          <h2 className="text-5xl md:text-6xl font-black mb-12 text-neutral-50" style={{letterSpacing: '-0.02em'}}>
+            FILMMAKER
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project) => (
-              <div
-                key={project.id}
-                className={`group cursor-pointer ${project.featured ? 'md:col-span-2' : ''}`}
-              >
-                <div className="relative overflow-hidden rounded-lg mb-6 aspect-video md:aspect-auto">
-                  <img
-                    src={project.thumbnail}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                </div>
-
-                <div className="space-y-3">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <h3 className="text-2xl md:text-3xl font-black group-hover:text-neutral-300 transition">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm text-neutral-500 mt-2">
-                        {project.year} · {project.type}
-                      </p>
+          <div className="overflow-x-auto pb-4 -mx-6 px-6">
+            <div className="flex gap-6 min-w-min">
+              {films.map((film) => (
+                <a 
+                  key={film.id}
+                  href={film.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex-shrink-0 w-80"
+                >
+                  <div className="relative overflow-hidden rounded-lg mb-4 aspect-video">
+                    <img
+                      src={film.thumbnail}
+                      alt={film.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center">
+                      <Play className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition" />
                     </div>
-                    <ArrowUpRight className="w-6 h-6 text-neutral-600 group-hover:text-neutral-300 transition mt-1" />
                   </div>
-                  <p className="text-neutral-400 leading-relaxed">{project.description}</p>
-                </div>
-              </div>
-            ))}
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-semibold group-hover:text-neutral-300 transition">
+                      {film.title}
+                    </h3>
+                    <p className="text-sm text-neutral-500">
+                      {film.year} · {film.type}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {filmStrip}
 
-      {/* Latest Videos */}
-      <section id="videos" className="py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-black mb-16 text-neutral-50" style={{letterSpacing: '-0.02em'}}>
-            LATEST
+      {/* Creador - Links a Redes */}
+      <section id="creador" className="py-24 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-5xl md:text-6xl font-black mb-12 text-neutral-50" style={{letterSpacing: '-0.02em'}}>
+            CREADOR
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {videos.map((video) => (
-              <div key={video.id} className="group cursor-pointer">
-                <div className="relative overflow-hidden rounded-lg mb-4 aspect-video">
-                  <img
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center">
-                    <Play className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition" />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-xs text-neutral-500 font-mono uppercase tracking-wider">
-                    {video.platform}
-                  </p>
-                  <h3 className="text-lg font-semibold group-hover:text-neutral-300 transition">
-                    {video.title}
-                  </h3>
-                  <p className="text-xs text-neutral-600">{video.date}</p>
-                </div>
-              </div>
+          <p className="text-lg text-neutral-300 mb-12 leading-relaxed max-w-2xl mx-auto">
+            Sígueme en mis redes. Más de 10 años creando videos sobre lo que amo.
+          </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {socials.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-4 border border-neutral-700 hover:border-neutral-400 hover:bg-neutral-900 transition group"
+              >
+                <span className="text-2xl mb-2 block">{social.icon}</span>
+                <span className="text-sm font-semibold group-hover:text-neutral-200 transition">{social.name}</span>
+              </a>
             ))}
           </div>
         </div>
@@ -247,67 +209,46 @@ export default function MiguelOrtegaPortfolio() {
           <h2 className="text-5xl md:text-6xl font-black mb-4 text-neutral-50" style={{letterSpacing: '-0.02em'}}>
             REVIEWS
           </h2>
-          <p className="text-neutral-500 text-lg mb-12">Film & Music Criticism</p>
+          <p className="text-neutral-500 text-lg mb-12">Crítica de Cine y Música</p>
 
-          {/* Featured Review */}
-          {reviews[0] && (
-            <div className="mb-20 pb-20 border-b border-neutral-800">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div className="aspect-square bg-neutral-900 rounded-lg border border-neutral-800" />
-                <div className="space-y-8">
-                  <div>
-                    <p className="text-xs text-neutral-500 font-mono uppercase tracking-widest mb-4">
-                      Featured Review
-                    </p>
-                    <h3 className="text-4xl md:text-5xl font-black mb-2">
-                      {reviews[0].title}
-                    </h3>
-                    <p className="text-neutral-400 text-lg">
-                      {reviews[0].artist} · {reviews[0].year}
-                    </p>
-                  </div>
-                  <div className="flex gap-1">
-                    {[...Array(reviews[0].rating)].map((_, i) => (
-                      <span key={i} className="text-2xl">★</span>
-                    ))}
-                  </div>
-                  <p className="text-lg text-neutral-300 leading-relaxed italic">
-                    "{reviews[0].excerpt}"
-                  </p>
-                  <button className="inline-flex items-center gap-2 px-6 py-3 border border-neutral-700 hover:border-neutral-400 transition">
-                    READ REVIEW <ArrowUpRight className="w-4 h-4" />
-                  </button>
-                </div>
+          {/* Letterboxd Embed */}
+          <div className="mb-20 pb-20 border-b border-neutral-800">
+            <div className="mb-6">
+              <h3 className="text-2xl font-semibold mb-4">Mis Reseñas en Letterboxd</h3>
+              <div 
+                id="letterboxd-embed-wrapper-tc" 
+                className="min-h-96 bg-neutral-900 rounded-lg p-6 border border-neutral-800"
+              >
+                <p className="text-neutral-500">Cargando reseñas de Letterboxd...</p>
               </div>
             </div>
-          )}
+            <a 
+              href="https://letterboxd.com/maikk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-neutral-700 hover:border-neutral-400 transition"
+            >
+              VER MÁS EN LETTERBOXD <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
 
-          {/* Review Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {reviews.slice(1).map((review) => (
-              <div key={review.id} className="group cursor-pointer">
-                <div className="aspect-square bg-neutral-900 rounded-lg border border-neutral-800 mb-6 group-hover:border-neutral-600 transition" />
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-xs text-neutral-500 font-mono uppercase tracking-wider mb-2">
-                      {review.type}
-                    </p>
-                    <h3 className="text-xl font-semibold group-hover:text-neutral-300 transition">
-                      {review.title}
-                    </h3>
-                    <p className="text-neutral-400 text-sm mt-1">
-                      {review.artist}
-                    </p>
-                  </div>
-                  <div className="flex gap-1">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <span key={i} className="text-lg">★</span>
-                    ))}
-                  </div>
-                  <p className="text-neutral-400 text-sm italic">"{review.excerpt}"</p>
-                </div>
-              </div>
-            ))}
+          {/* Musicboard Section */}
+          <div className="py-12 text-center">
+            <div className="mb-8">
+              <Music className="w-16 h-16 mx-auto text-neutral-400 mb-6" />
+              <h3 className="text-3xl font-semibold mb-4">Reseñas de Música</h3>
+              <p className="text-neutral-400 mb-8 max-w-xl mx-auto">
+                Crítica y análisis de álbumes en Musicboard
+              </p>
+              <a 
+                href="https://musicboard.app/maikchemicalromance"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-neutral-50 text-neutral-950 font-semibold hover:bg-neutral-200 transition"
+              >
+                IR A MUSICBOARD <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -318,27 +259,24 @@ export default function MiguelOrtegaPortfolio() {
       <section id="about" className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-black mb-12 text-neutral-50" style={{letterSpacing: '-0.02em'}}>
-            ABOUT MIGUEL
+            SOBRE MI
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="aspect-square bg-neutral-900 rounded-lg border border-neutral-800" />
             <div className="space-y-6">
               <p className="text-lg text-neutral-300 leading-relaxed">
-                Filmmaker and content creator exploring cinema, music and contemporary culture through short-form and long-form video, criticism, and visual essays.
+                Hola soy maik, tengo más de 10 años creando videos sobre lo que amo. 
               </p>
               <p className="text-lg text-neutral-300 leading-relaxed">
-                Driven by curiosity about narrative, aesthetics, and the intersection of art and digital culture. Passionate about building a personal creative universe beyond social platforms.
+                Estudié teología pero aun no me titulo lol. Sígueme y te prometo buenos tiempos.
               </p>
-              <div className="flex gap-8 pt-6">
-                <a href="https://instagram.com/maikposting" className="text-neutral-400 hover:text-neutral-200 transition font-mono text-sm">
-                  INSTAGRAM →
-                </a>
-                <a href="https://tiktok.com/@maikposting" className="text-neutral-400 hover:text-neutral-200 transition font-mono text-sm">
-                  TIKTOK →
-                </a>
-                <a href="https://letterboxd.com/maikposting" className="text-neutral-400 hover:text-neutral-200 transition font-mono text-sm">
-                  LETTERBOXD →
+              <div className="pt-6">
+                <a 
+                  href="#contact"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-neutral-50 text-neutral-950 font-semibold hover:bg-neutral-200 transition"
+                >
+                  CONTACTO <ArrowUpRight className="w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -349,30 +287,37 @@ export default function MiguelOrtegaPortfolio() {
       {filmStrip}
 
       {/* Contact */}
-      <section className="py-24 px-6 text-center border-t border-neutral-800">
+      <section id="contact" className="py-24 px-6 text-center border-t border-neutral-800">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-black mb-8 text-neutral-50" style={{letterSpacing: '-0.02em'}}>
-            LET'S MAKE
+            HAGAMOS
             <br />
-            SOMETHING
+            ALGO CHILO
           </h2>
           <p className="text-neutral-400 mb-12 text-lg">
-            Open to collaboration, speaking engagements, and creative projects.
+            Abierto a colaboraciones y proyectos creativos.
           </p>
-          <button className="px-8 py-4 bg-neutral-50 text-neutral-950 font-semibold hover:bg-neutral-200 transition mb-12">
-            SEND EMAIL
-          </button>
+          
+          <a 
+            href="mailto:contactomaikyt@gmail.com"
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-neutral-50 text-neutral-950 font-semibold hover:bg-neutral-200 transition mb-12 relative overflow-hidden"
+          >
+            <Mail className="w-5 h-5" />
+            <span>ENVIAR EMAIL</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity" />
+          </a>
+
           <div className="flex justify-center gap-8 text-sm">
-            <a href="https://instagram.com/maikposting" className="text-neutral-500 hover:text-neutral-300 transition">
+            <a href="https://www.instagram.com/maikposting" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-neutral-300 transition">
               Instagram
             </a>
-            <a href="https://tiktok.com/@maikposting" className="text-neutral-500 hover:text-neutral-300 transition">
+            <a href="https://www.tiktok.com/@maikposting" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-neutral-300 transition">
               TikTok
             </a>
-            <a href="https://youtube.com/@maikposting" className="text-neutral-500 hover:text-neutral-300 transition">
+            <a href="https://www.youtube.com/@maikeldelosvideos" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-neutral-300 transition">
               YouTube
             </a>
-            <a href="https://letterboxd.com/maikposting" className="text-neutral-500 hover:text-neutral-300 transition">
+            <a href="https://letterboxd.com/maikk/" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-neutral-300 transition">
               Letterboxd
             </a>
           </div>
@@ -380,11 +325,43 @@ export default function MiguelOrtegaPortfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-neutral-800 py-12 px-6">
-        <div className="max-w-7xl mx-auto text-center text-xs text-neutral-600 space-y-4">
-          <p className="font-mono tracking-widest">MIGUEL ORTEGA</p>
-          <p>Filmmaker · Creator · Critic</p>
-          <p>© 2026 Miguel Ortega. All rights reserved.</p>
+      <footer className="border-t border-neutral-800 py-20 px-6 bg-neutral-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-4xl md:text-5xl font-black text-neutral-50 mb-2" style={{letterSpacing: '-0.02em'}}>
+              GOD IS.
+            </p>
+            <p className="text-4xl md:text-5xl font-black text-neutral-50 mb-8" style={{letterSpacing: '-0.02em'}}>
+              GOD LOVES.
+            </p>
+            <p className="text-neutral-400 text-lg italic">— John Coltrane</p>
+          </div>
+
+          <div className="border-t border-neutral-700 pt-12 text-center space-y-4">
+            <div className="flex justify-center gap-6 text-sm">
+              <a href="https://www.instagram.com/maikposting" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-neutral-300 transition">
+                Instagram
+              </a>
+              <a href="https://www.tiktok.com/@maikposting" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-neutral-300 transition">
+                TikTok
+              </a>
+              <a href="https://www.youtube.com/@maikeldelosvideos" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-neutral-300 transition">
+                YouTube
+              </a>
+              <a href="https://www.facebook.com/maikposting" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-neutral-300 transition">
+                Facebook
+              </a>
+              <a href="https://letterboxd.com/maikk/" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-neutral-300 transition">
+                Letterboxd
+              </a>
+              <a href="https://substack.com/@maikposting" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-neutral-300 transition">
+                Substack
+              </a>
+            </div>
+            <p className="text-xs text-neutral-600 pt-4">
+              © 2026 MAIK. Todos los derechos reservados.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
