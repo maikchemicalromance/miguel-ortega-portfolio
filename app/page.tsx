@@ -525,7 +525,7 @@ export default function MiguelOrtegaPortfolio() {
             <div className="relative aspect-square overflow-hidden bg-neutral-900">
 
               <img
-                src="https://i.imgur.com/d4ZDMcg.jpg"
+                src="https://i.imgur.com/d4ZDMcg.jpg?v=2"
                 alt="Miguel Ortega"
                 loading="lazy"
                 className="w-full h-full object-cover"
