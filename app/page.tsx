@@ -188,7 +188,7 @@ export default function MiguelOrtegaPortfolio() {
           {/* GIF */}
           <div className="relative mx-auto mb-10 max-w-3xl overflow-hidden">
             <img
-              src="https://i.imgur.com/4LYejFa.gifv"
+              src="https://i.imgur.com/4LYejFa.gif"
               alt=""
               className="w-full max-h-[420px] object-cover opacity-90"
             />
