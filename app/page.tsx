@@ -70,45 +70,41 @@ const staggerItem: Variants = {
   },
 };
 
-
-
 /* =========================
    MAIN
 ========================= */
 
 export default function MiguelOrtegaPortfolio() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [letterboxdLoading, setLetterboxdLoading] = useState(true);
 
   /* =========================
      LETTERBOXD
   ========================= */
 
   useEffect(() => {
-  const loadLetterboxd = () => {
-    fetch("https://lb-embed-content.bokonon.dev?username=maikk")
-      .then((response) => response.text())
-      .then((data) => {
-        const wrapper = document.getElementById(
-          "letterboxd-embed-wrapper-tc"
-        );
+    const loadLetterboxd = () => {
+      fetch(
+        "https://lb-embed-content.bokonon.dev?username=maikk"
+      )
+        .then((response) => response.text())
+        .then((data) => {
+          const wrapper = document.getElementById(
+            "letterboxd-embed-wrapper-tc"
+          );
 
-        if (wrapper) {
-          wrapper.innerHTML = data;
-          setLetterboxdLoading(false);
-        }
-      })
-      .catch((err) => {
-        console.log("Letterboxd embed error:", err);
-        setLetterboxdLoading(false);
-      });
-  };
+          if (wrapper) {
+            wrapper.innerHTML = data;
+          }
+        })
+        .catch((err) => {
+          console.log("Letterboxd embed error:", err);
+        });
+    };
 
-  const timeout = setTimeout(loadLetterboxd, 500);
+    const timeout = setTimeout(loadLetterboxd, 500);
 
-  return () => clearTimeout(timeout);
-}, []);
-
+    return () => clearTimeout(timeout);
+  }, []);
 
   /* =========================
      HERO PARALLAX
@@ -243,8 +239,6 @@ export default function MiguelOrtegaPortfolio() {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-neutral-800/80 backdrop-blur-xl bg-neutral-950/85">
         <div className="max-w-7xl mx-auto px-5 md:px-6 py-4 flex justify-between items-center">
 
-          {/* Logo */}
-
           <motion.a
             href="#top"
             className="flex items-center"
@@ -266,8 +260,6 @@ export default function MiguelOrtegaPortfolio() {
             />
           </motion.a>
 
-          {/* Desktop Navigation */}
-
           <div className="hidden md:flex items-center gap-7 text-xs tracking-widest font-medium">
             {navigation.map((item) => (
               <motion.a
@@ -280,8 +272,6 @@ export default function MiguelOrtegaPortfolio() {
               </motion.a>
             ))}
           </div>
-
-          {/* Mobile Button */}
 
           <button
             onClick={() =>
@@ -297,8 +287,6 @@ export default function MiguelOrtegaPortfolio() {
             )}
           </button>
         </div>
-
-        {/* Mobile Navigation */}
 
         {mobileMenuOpen && (
           <motion.div
@@ -355,9 +343,6 @@ export default function MiguelOrtegaPortfolio() {
         id="top"
         className="pt-20 md:pt-24 pb-20"
       >
-
-        {/* HERO VIDEO */}
-
         <div className="relative w-full h-[60vh] min-h-[450px] md:h-[78vh] md:min-h-[650px] overflow-hidden">
 
           <motion.video
@@ -379,16 +364,10 @@ export default function MiguelOrtegaPortfolio() {
             />
           </motion.video>
 
-          {/* Gradient superior */}
-
           <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/90 via-transparent to-neutral-950 pointer-events-none" />
-
-          {/* Gradient lateral */}
 
           <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/50 via-transparent to-neutral-950/50 pointer-events-none" />
         </div>
-
-        {/* HERO TEXT */}
 
         <motion.div
           className="max-w-5xl mx-auto text-center px-5 md:px-6"
@@ -480,8 +459,6 @@ export default function MiguelOrtegaPortfolio() {
               que decir.
             </p>
           </Reveal>
-
-          {/* SOCIAL GRID */}
 
           <motion.div
             className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
@@ -674,54 +651,43 @@ export default function MiguelOrtegaPortfolio() {
 
             {/* LETTERBOXD */}
 
-            <h3 className="text-2xl font-semibold mb-6">
-  Cine
-</h3>
+            <Reveal>
+              <div>
 
-<div className="min-h-96 bg-neutral-900 rounded-lg p-6 border border-neutral-800 overflow-hidden">
-  {letterboxdLoading && (
-    <div className="animate-pulse space-y-5">
-      <div className="h-6 bg-neutral-800 rounded w-1/3" />
-      <div className="h-4 bg-neutral-800 rounded w-2/3" />
+                <h3 className="text-2xl font-semibold mb-6">
+                  Cine
+                </h3>
 
-      <div className="grid grid-cols-3 gap-3 pt-3">
-        <div className="aspect-[2/3] bg-neutral-800 rounded" />
-        <div className="aspect-[2/3] bg-neutral-800 rounded" />
-        <div className="aspect-[2/3] bg-neutral-800 rounded" />
-      </div>
+                <div className="min-h-96 bg-neutral-900 rounded-lg p-6 border border-neutral-800 overflow-hidden">
+                  <div id="letterboxd-embed-wrapper-tc">
+                    Loading...
+                  </div>
+                </div>
 
-      <div className="h-4 bg-neutral-800 rounded w-1/2" />
-    </div>
-  )}
+                <motion.a
+                  href="https://letterboxd.com/maikk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{
+                    y: -3,
+                    scale: 1.02,
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 350,
+                    damping: 20,
+                  }}
+                  className="inline-flex items-center gap-2 px-6 py-3 border border-neutral-700 hover:border-neutral-400 hover:bg-neutral-900 transition-colors mt-6"
+                >
+                  VER MÁS EN LETTERBOXD
+                  <ArrowUpRight className="w-4 h-4" />
+                </motion.a>
 
-  <iframe
-    id="letterboxd-embed-iframe"
-    title="Mis últimas películas en Letterboxd"
-    className="w-full min-h-96 border-0"
-  />
-</div>
-
-<motion.a
-  href="https://letterboxd.com/maikk/"
-  target="_blank"
-  rel="noopener noreferrer"
-  whileHover={{
-    y: -3,
-    scale: 1.02,
-  }}
-  whileTap={{
-    scale: 0.98,
-  }}
-  transition={{
-    type: "spring",
-    stiffness: 350,
-    damping: 20,
-  }}
-  className="inline-flex items-center gap-2 px-6 py-3 border border-neutral-700 hover:border-neutral-400 hover:bg-neutral-900 transition-colors mt-6"
->
-  VER MÁS EN LETTERBOXD
-  <ArrowUpRight className="w-4 h-4" />
-</motion.a>
+              </div>
+            </Reveal>
 
             {/* MUSICBOARD */}
 
@@ -816,8 +782,6 @@ export default function MiguelOrtegaPortfolio() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
 
-            {/* FOTO */}
-
             <Reveal>
               <motion.div
                 className="relative aspect-square overflow-hidden bg-neutral-900"
@@ -848,8 +812,6 @@ export default function MiguelOrtegaPortfolio() {
 
               </motion.div>
             </Reveal>
-
-            {/* TEXTO */}
 
             <Reveal delay={0.12}>
               <div className="space-y-6">
