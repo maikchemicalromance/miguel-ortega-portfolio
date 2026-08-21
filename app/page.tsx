@@ -85,31 +85,30 @@ export default function MiguelOrtegaPortfolio() {
   ========================= */
 
   useEffect(() => {
-    const loadLetterboxd = () => {
-      fetch(
-        "https://lb-embed-content.bokonon.dev?username=maikk"
-      )
-        .then((response) => response.text())
-        .then((data) => {
-          const wrapper = document.getElementById(
-            "letterboxd-embed-wrapper-tc"
-          );
+  const loadLetterboxd = () => {
+    fetch("https://lb-embed-content.bokonon.dev?username=maikk")
+      .then((response) => response.text())
+      .then((data) => {
+        const wrapper = document.getElementById(
+          "letterboxd-embed-wrapper-tc"
+        );
 
-          if (wrapper) {
-            wrapper.innerHTML = data;
-            setLetterboxdLoading(false);
-          }
-        })
-        .catch((err) => {
-          console.log("Letterboxd embed error:", err);
+        if (wrapper) {
+          wrapper.innerHTML = data;
           setLetterboxdLoading(false);
-        });
-    };
+        }
+      })
+      .catch((err) => {
+        console.log("Letterboxd embed error:", err);
+        setLetterboxdLoading(false);
+      });
+  };
 
-    const timeout = setTimeout(loadLetterboxd, 500);
+  const timeout = setTimeout(loadLetterboxd, 500);
 
-    return () => clearTimeout(timeout);
-  }, []);
+  return () => clearTimeout(timeout);
+}, []);
+
 
   /* =========================
      HERO PARALLAX
@@ -675,64 +674,54 @@ export default function MiguelOrtegaPortfolio() {
 
             {/* LETTERBOXD */}
 
-            <Reveal>
-              <div>
+            <h3 className="text-2xl font-semibold mb-6">
+  Cine
+</h3>
 
-                <h3 className="text-2xl font-semibold mb-6">
-                  Cine
-                </h3>
+<div className="min-h-96 bg-neutral-900 rounded-lg p-6 border border-neutral-800 overflow-hidden">
+  {letterboxdLoading && (
+    <div className="animate-pulse space-y-5">
+      <div className="h-6 bg-neutral-800 rounded w-1/3" />
+      <div className="h-4 bg-neutral-800 rounded w-2/3" />
 
-                <div
-                  id="letterboxd-embed-wrapper-tc"
-                  className="min-h-96 bg-neutral-900 rounded-lg p-6 border border-neutral-800 overflow-hidden"
-                >
-                  {letterboxdLoading && (
-                    <div className="animate-pulse space-y-5">
+      <div className="grid grid-cols-3 gap-3 pt-3">
+        <div className="aspect-[2/3] bg-neutral-800 rounded" />
+        <div className="aspect-[2/3] bg-neutral-800 rounded" />
+        <div className="aspect-[2/3] bg-neutral-800 rounded" />
+      </div>
 
-                      <div className="h-6 bg-neutral-800 rounded w-1/3" />
+      <div className="h-4 bg-neutral-800 rounded w-1/2" />
+    </div>
+  )}
 
-                      <div className="h-4 bg-neutral-800 rounded w-2/3" />
+  <iframe
+    id="letterboxd-embed-iframe"
+    title="Mis últimas películas en Letterboxd"
+    className="w-full min-h-96 border-0"
+  />
+</div>
 
-                      <div className="grid grid-cols-3 gap-3 pt-3">
-
-                        <div className="aspect-[2/3] bg-neutral-800 rounded" />
-
-                        <div className="aspect-[2/3] bg-neutral-800 rounded" />
-
-                        <div className="aspect-[2/3] bg-neutral-800 rounded" />
-
-                      </div>
-
-                      <div className="h-4 bg-neutral-800 rounded w-1/2" />
-
-                    </div>
-                  )}
-                </div>
-
-                <motion.a
-                  href="https://letterboxd.com/maikk/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{
-                    y: -3,
-                    scale: 1.02,
-                  }}
-                  whileTap={{
-                    scale: 0.98,
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 350,
-                    damping: 20,
-                  }}
-                  className="inline-flex items-center gap-2 px-6 py-3 border border-neutral-700 hover:border-neutral-400 hover:bg-neutral-900 transition-colors mt-6"
-                >
-                  VER MÁS EN LETTERBOXD
-                  <ArrowUpRight className="w-4 h-4" />
-                </motion.a>
-
-              </div>
-            </Reveal>
+<motion.a
+  href="https://letterboxd.com/maikk/"
+  target="_blank"
+  rel="noopener noreferrer"
+  whileHover={{
+    y: -3,
+    scale: 1.02,
+  }}
+  whileTap={{
+    scale: 0.98,
+  }}
+  transition={{
+    type: "spring",
+    stiffness: 350,
+    damping: 20,
+  }}
+  className="inline-flex items-center gap-2 px-6 py-3 border border-neutral-700 hover:border-neutral-400 hover:bg-neutral-900 transition-colors mt-6"
+>
+  VER MÁS EN LETTERBOXD
+  <ArrowUpRight className="w-4 h-4" />
+</motion.a>
 
             {/* MUSICBOARD */}
 
