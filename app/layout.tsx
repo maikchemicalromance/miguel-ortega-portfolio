@@ -13,20 +13,29 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://maikposting.com"),
+
   title: "Miguel Ortega — Filmmaker · Creador · Crítico",
+
   description:
     "Miguel Ortega — filmmaker, creador y crítico. Películas, videos, cine, música y cultura.",
+
   icons: {
     icon: "/icon.png",
     shortcut: "/icon.png",
     apple: "/icon.png",
   },
+
   openGraph: {
     title: "Miguel Ortega — Filmmaker · Creador · Crítico",
+
     description:
       "Filmmaker, creador y crítico. Películas, videos, cine, música y cultura.",
-    url: "https://miguel-ortega-portfolio.vercel.app",
+
+    url: "https://maikposting.com",
+
     siteName: "Miguel Ortega",
+
     images: [
       {
         url: "/og-image.jpg",
@@ -35,14 +44,19 @@ export const metadata: Metadata = {
         alt: "Miguel Ortega",
       },
     ],
+
     locale: "es_MX",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
+
     title: "Miguel Ortega — Filmmaker · Creador · Crítico",
+
     description:
       "Filmmaker, creador y crítico. Películas, videos, cine, música y cultura.",
+
     images: ["/og-image.jpg"],
   },
 };
